@@ -25,7 +25,7 @@ resource "aws_subnet" "demo_subnet" {
   vpc_id     = aws_vpc.demo.id
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "eu-west-1"
+  availability_zone = "eu-west-1a"
 
   tags = {
     Name = "demo_subnet"
@@ -99,11 +99,11 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 resource "aws_instance" "foo" {
-  ami           = "ami-04b70fa74e45c3917" # us-west-2
+  ami           = "ami-0b5a7998795f497af" # eu-west-1
   instance_type = "t2.micro"
   subnet_id = aws_subnet.demo_subnet.id
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
-  availability_zone = "eu-west-1"
+  availability_zone = "eu-west-1a"
   key_name = "ajibskeypair"
   count = 5
 
